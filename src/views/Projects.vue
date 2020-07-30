@@ -16,11 +16,11 @@
         projects: [],
       }
     },
-    watch:{
-      '$route' (to,from){
-        this.getData()
-      }
-    },
+    // watch:{
+    //   '$route' (to,from){
+    //     this.getData()
+    //   }
+    // },
     methods: {
       getData() {
         // var that = this;
@@ -32,19 +32,7 @@
     mounted() {
       this.getData()
     }
-      
   }
-
-
-
-// created() {
-//     fetch("http://admin.matscornegoor.nl/mats/items/projects/" + this.id)
-//       .then(response => response.json())
-//       .then(data => (this.projects = data.data));
-//     },
-//     mounted() {
-//       this.getData()
-//     }
 </script>
 
 

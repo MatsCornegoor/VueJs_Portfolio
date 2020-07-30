@@ -12,7 +12,6 @@
 </template>
 
 <script>
-
 export default {
   name: 'app',
 
@@ -54,8 +53,6 @@ export default {
 .view-enter-active {
   transition-delay: 0.5s;
 }
-
-
 
 .view-enter, .view-leave-to {
   opacity: 0;
