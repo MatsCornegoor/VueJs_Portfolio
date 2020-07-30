@@ -2,11 +2,22 @@
   <div id="app">
     <div id="nav">
       <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <router-link to="/about">About</router-link> |
+      <router-link to="/projects">Projects</router-link>
     </div>
-    <router-view/>
+    <transition name="view">
+      <router-view/>
+    </transition>
   </div>
 </template>
+
+<script>
+
+export default {
+  name: 'app',
+
+}
+</script>
 
 <style>
 #app {
@@ -29,4 +40,32 @@
 #nav a.router-link-exact-active {
   color: #42b983;
 }
+
+.page {
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.view-enter-active, .view-leave-active {
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease ;
+}
+
+.view-enter-active {
+  transition-delay: 0.5s;
+}
+
+
+
+.view-enter, .view-leave-to {
+  opacity: 0;
+  transform: translateY(-50px);
+}
+
+.view-enter-to, .view-leave {
+  opacity: 1;
+  transform: translateY(0px);
+}
+
+
 </style>
