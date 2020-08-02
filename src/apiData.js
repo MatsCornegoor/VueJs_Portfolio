@@ -15,4 +15,11 @@ export default new class {
             }) 
     }
 
+    getProjectMedia(id){
+        return axios.get("http://admin.matscornegoor.nl/mats/files/" + id)
+            .then(response => {
+                return response.data
+            }) 
+    }
+
 }

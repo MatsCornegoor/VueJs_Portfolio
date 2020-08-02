@@ -18,9 +18,7 @@
         projects: []
       }
     },
-    async created () {
-      // const response = await this.$api.getProjects()
-      // this.projects = response.data
+    mounted() {
       api.getProjects()
         .then(data => (this.projects = data.data));
     } 

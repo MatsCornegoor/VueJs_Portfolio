@@ -1,25 +1,33 @@
 <template>
   <div class="page">
-    <h1>{{ id }}</h1>
-    <p> {{projects.name}} </p>
-    <p> {{projects.created_on}} </p>
+    <!-- <h1>{{id}}</h1> -->
+    <h1> {{project.name}} </h1>
+    <!-- <p> {{project.created_on}} </p> -->
+    <img v-bind:src="projectMedia.full_url" /> 
+    <p> {{project.description}} </p>
 
   </div>
 </template>
 
 <script>
   import api from "../apiData.js"
+  // let imageId
   export default {
     props: ['id'],
 
     data(){
       return {
-        projects: []
+        project: [],
+        projectMedia: []
       }
     },
     mounted() {
       api.getProject(this.id)
-        .then(data => (this.projects = data.data));
+        .then(data => {
+            this.project = data.data
+            api.getProjectMedia(data.data.image)
+              .then(data => (this.projectMedia = data.data.data));
+        });
     } 
 
   }
