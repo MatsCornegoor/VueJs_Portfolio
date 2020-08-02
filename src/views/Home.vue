@@ -10,14 +10,17 @@
 </template>
 
 <script>
-  import api from "../apiData.js"
+  import api from "../apiData.js";
+
   export default {
     data(){
       return {
         projects: []
       }
     },
-    mounted() {
+    async created () {
+      // const response = await this.$api.getProjects()
+      // this.projects = response.data
       api.getProjects()
         .then(data => (this.projects = data.data));
     } 
