@@ -8,30 +8,20 @@
 </template>
 
 <script>
+  import api from "../apiData.js"
   export default {
     props: ['id'],
 
     data(){
       return {
-        projects: [],
-      }
-    },
-    // watch:{
-    //   '$route' (to,from){
-    //     this.getData()
-    //   }
-    // },
-    methods: {
-      getData() {
-        // var that = this;
-        fetch("http://admin.matscornegoor.nl/mats/items/projects/" + this.id)
-          .then(response => response.json())
-          .then(data => (this.projects = data.data));
+        projects: []
       }
     },
     mounted() {
-      this.getData()
-    }
+      api.getProject(this.id)
+        .then(data => (this.projects = data.data));
+    } 
+
   }
 </script>
 
