@@ -1,15 +1,17 @@
+import axios from "axios"
+
 export default {
     getProjects(){
-        return fetch("http://admin.matscornegoor.nl/mats/items/projects")
+        return axios.get("http://admin.matscornegoor.nl/mats/items/projects")
             .then(response => {
-                return response.json();
+                return response.data
             }) 
     },
 
     getProject(id){
-        return fetch("http://admin.matscornegoor.nl/mats/items/projects/" + id)
+        return axios.get("http://admin.matscornegoor.nl/mats/items/projects/" + id)
             .then(response => {
-                return response.json();
+                return response.data
             }) 
     },
 
