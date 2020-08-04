@@ -1,8 +1,9 @@
 import axios from "axios"
 
 export default new class {
+    
     getProjects(){
-        return axios.get("http://admin.matscornegoor.nl/mats/items/projects")
+        return axios.get("http://admin.matscornegoor.nl/mats/items/projects?fields=id,name,description,image.data")
             .then(response => {
                 return response.data
             }) 
@@ -23,3 +24,6 @@ export default new class {
     }
 
 }
+
+// http://admin.matscornegoor.nl/mats/items/projects/?fields=image.data
+// http://admin.matscornegoor.nl/mats/items/projects?fields=id,name,description,image.data

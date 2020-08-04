@@ -21,12 +21,11 @@
     mounted() {
       api.getProject(this.id)
         .then(data => {
-            this.project = data.data
+            this.project = data.data;
             api.getProjectMedia(data.data.image)
               .then(data => (this.projectMedia = data.data.data));
         });
     } 
-
   }
 </script>
 

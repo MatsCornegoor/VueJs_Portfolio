@@ -5,7 +5,11 @@
 
     <div v-for="project in projects" :key="project.id">
       <router-link v-bind:to="'/projects/' + project.id ">{{project.name}}</router-link>
+      <div v-for="data in project.image" :key="data.full_url" >
+        <img v-bind:src="data.full_url" /> 
+      </div>
     </div>
+    
   </div>
 </template>
 
@@ -15,12 +19,15 @@
   export default {
     data(){
       return {
-        projects: []
+        projects: [],
       }
     },
     mounted() {
       api.getProjects()
-        .then(data => (this.projects = data.data));
+        .then(data => {
+          this.projects = data.data;
+          // console.log(data.data);
+        });
     } 
   }
 </script>
