@@ -10,7 +10,9 @@
       </div>
     </div>
     <transition name="view">
-      <router-view/>
+      <keep-alive>
+        <router-view :key="$route.fullPath"/>
+      </keep-alive>
     </transition>
   </div>
 </template>

@@ -1,6 +1,5 @@
 import axios from "axios"
 
-
 export default new class {
     
     getProjects(){
@@ -52,23 +51,16 @@ export default new class {
                 }
                 
                 return outputData;
-
             }) 
     }
 
-    // getProject(id){
-    //     return axios.get("http://admin.matscornegoor.nl/mats/items/projects/" + id + "?fields=id,name,description,image.data,images.data")
+
+    // getMedia(id){
+    //     return axios.get("http://admin.matscornegoor.nl/mats/files/" + id)
     //         .then(response => {
     //             return response.data
     //         }) 
     // }
-
-    getMedia(id){
-        return axios.get("http://admin.matscornegoor.nl/mats/files/" + id)
-            .then(response => {
-                return response.data
-            }) 
-    }
 
 }
 

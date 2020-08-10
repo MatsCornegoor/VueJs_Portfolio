@@ -17,10 +17,9 @@
         project: [],
       }
     },
-    mounted() {
+    created() {
       api.getProject(this.slug)
         .then(data => {
-          // console.log(data);
           this.project = data;
         });
     } 
