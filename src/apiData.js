@@ -1,5 +1,4 @@
 import axios from "axios"
-
 export default new class {
     
     getProjects(){
@@ -13,13 +12,13 @@ export default new class {
                         imageData = response.data.data[i].image.data.full_url;
                     }
 
-                    outputData[i] = {
+                    outputData.push({
                         id: response.data.data[i].id,
                         slug: response.data.data[i].slug,
                         name: response.data.data[i].name,
                         description: response.data.data[i].description,
                         image: imageData
-                    }
+                    })
                 }
                 return outputData;
 
@@ -31,7 +30,7 @@ export default new class {
             .then(response => {
                 
                 // return element when project.slug is true to slug
-                var filteredData = response.data.data.find(function(project) {
+                let filteredData = response.data.data.find(function(project) {
                     if (project.slug == slug)
                         return true;
                 });
@@ -47,7 +46,6 @@ export default new class {
                             }) 
                     }
                 }
-
 
                 let imageData = null;
                 if( filteredData.image !== null ){

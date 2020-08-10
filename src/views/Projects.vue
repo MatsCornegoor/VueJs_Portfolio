@@ -26,7 +26,7 @@
       api.getProject(this.slug)
         .then(data => {
           this.project = data;
-          // console.log(data)
+          console.log(data)
         });
     } 
   }
