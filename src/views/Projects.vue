@@ -4,6 +4,11 @@
     <img v-if="project.image"  v-bind:src="project.image" /> 
     <p v-if="project.description" > {{project.description}} </p>
 
+    <div v-for="(image,index) in project.images" :key="index">
+      <img v-bind:src="image" />
+      <p>hoi</p>
+    </div>
+
   </div>
 </template>
 
@@ -17,10 +22,11 @@
         project: [],
       }
     },
-    created() {
+    mounted() {
       api.getProject(this.slug)
         .then(data => {
           this.project = data;
+          // console.log(data)
         });
     } 
   }

@@ -18,8 +18,7 @@ export default new class {
                         slug: response.data.data[i].slug,
                         name: response.data.data[i].name,
                         description: response.data.data[i].description,
-                        image: imageData,
-                        // images: imagesData
+                        image: imageData
                     }
                 }
                 return outputData;
@@ -30,13 +29,26 @@ export default new class {
     getProject(slug){
         return axios.get("http://admin.matscornegoor.nl/mats/items/projects?fields=id,name,description,image.data,images.directus_files_id,slug")
             .then(response => {
-
+                
+                // return element when project.slug is true to slug
                 var filteredData = response.data.data.find(function(project) {
                     if (project.slug == slug)
                         return true;
                 });
 
                 var outputData = [];
+
+                var imagesData = [];
+                if( filteredData.images !== null ){
+                    for( let i = 0; i < filteredData.images.length; i++){
+                        axios.get("http://admin.matscornegoor.nl/mats/files/" + filteredData.images[i].directus_files_id)
+                            .then(response => {
+                                imagesData.push(response.data.data.data.full_url);
+                            }) 
+                    }
+                }
+
+
                 let imageData = null;
                 if( filteredData.image !== null ){
                     imageData = filteredData.image.data.full_url;
@@ -48,6 +60,7 @@ export default new class {
                     name: filteredData.name,
                     description: filteredData.description,
                     image: imageData,
+                    images: imagesData
                 }
                 
                 return outputData;

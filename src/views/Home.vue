@@ -24,6 +24,7 @@
       api.getProjects()
         .then(data => {
           this.projects = data;
+          console.log(data)
         });
       
     } 
