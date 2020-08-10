@@ -1,11 +1,11 @@
 import axios from "axios"
 
+
 export default new class {
     
     getProjects(){
-        return axios.get("http://admin.matscornegoor.nl/mats/items/projects?fields=id,name,description,image.data,images.directus_files_id")
+        return axios.get("http://admin.matscornegoor.nl/mats/items/projects?fields=id,name,description,image.data,images.directus_files_id,slug")
             .then(response => {
-                // return response.data
 
                 var outputData = [];
                 for( let i = 0; i < response.data.data.length; i++){
@@ -16,7 +16,9 @@ export default new class {
 
                     outputData[i] = {
                         id: response.data.data[i].id,
+                        slug: response.data.data[i].slug,
                         name: response.data.data[i].name,
+                        description: response.data.data[i].description,
                         image: imageData,
                         // images: imagesData
                     }
@@ -26,12 +28,40 @@ export default new class {
             }) 
     }
 
-    getProject(id){
-        return axios.get("http://admin.matscornegoor.nl/mats/items/projects/" + id + "?fields=id,name,description,image.data,images.data")
+    getProject(slug){
+        return axios.get("http://admin.matscornegoor.nl/mats/items/projects?fields=id,name,description,image.data,images.directus_files_id,slug")
             .then(response => {
-                return response.data
+
+                var filteredData = response.data.data.find(function(project) {
+                    if (project.slug == slug)
+                        return true;
+                });
+
+                var outputData = [];
+                let imageData = null;
+                if( filteredData.image !== null ){
+                    imageData = filteredData.image.data.full_url;
+                }
+
+                outputData = {
+                    id: filteredData.id,
+                    slug: filteredData.slug,
+                    name: filteredData.name,
+                    description: filteredData.description,
+                    image: imageData,
+                }
+                
+                return outputData;
+
             }) 
     }
+
+    // getProject(id){
+    //     return axios.get("http://admin.matscornegoor.nl/mats/items/projects/" + id + "?fields=id,name,description,image.data,images.data")
+    //         .then(response => {
+    //             return response.data
+    //         }) 
+    // }
 
     getMedia(id){
         return axios.get("http://admin.matscornegoor.nl/mats/files/" + id)

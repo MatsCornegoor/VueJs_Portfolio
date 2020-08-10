@@ -14,7 +14,7 @@ Vue.use(VueRouter)
       component: Home
     },
     {
-      path: '/projects/:id',
+      path: '/projects/:slug',
       name: 'Projects',
       props: true, 
       component: Projects
