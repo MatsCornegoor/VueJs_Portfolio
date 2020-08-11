@@ -2,10 +2,11 @@ import axios from "axios"
 export default new class {
     
     getProjects(){
-        return axios.get("http://admin.matscornegoor.nl/mats/items/projects?fields=id,name,description,image.data,images.directus_files_id,slug")
+        return axios.get("http://admin.matscornegoor.nl/mats/items/projects?fields=id,name,description,image.data,slug,position")
             .then(response => {
 
-                var outputData = [];
+                let outputData = [];
+
                 for( let i = 0; i < response.data.data.length; i++){
                     let imageData = null;
                     if( response.data.data[i].image !== null ){
@@ -16,10 +17,12 @@ export default new class {
                         id: response.data.data[i].id,
                         slug: response.data.data[i].slug,
                         name: response.data.data[i].name,
+                        position: response.data.data[i].position,
                         description: response.data.data[i].description,
                         image: imageData
                     })
                 }
+
                 return outputData;
 
             }) 
@@ -35,9 +38,9 @@ export default new class {
                         return true;
                 });
 
-                var outputData = [];
+                let outputData = [];
+                let imagesData = [];
 
-                var imagesData = [];
                 if( filteredData.images !== null ){
                     for( let i = 0; i < filteredData.images.length; i++){
                         axios.get("http://admin.matscornegoor.nl/mats/files/" + filteredData.images[i].directus_files_id)

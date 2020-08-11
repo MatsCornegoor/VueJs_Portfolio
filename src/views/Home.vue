@@ -1,11 +1,29 @@
 <template>
   <div class="page">
-    <h1>hey, this is the home page</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est deleniti error officia autem, ipsa laudantium dignissimos ut odit temporibus saepe labore ipsum quos tempore animi at iste expedita suscipit natus quidem tenetur explicabo voluptatem minima. Voluptas exercitationem perspiciatis iusto doloribus, iure harum quod voluptatibus explicabo culpa quas temporibus reprehenderit illo sunt consectetur a, debitis distinctio, magnam quos. Facilis, doloribus nobis!hey</p>
-
     <div v-for="project in projects" :key="project.id">
-      <router-link v-bind:to="'/projects/' + project.slug ">{{project.name}}</router-link>
-      <img v-if="project.image"  v-bind:src="project.image" /> 
+      <div class="section">
+        <div v-bind:class="project.position" class="project">
+          <router-link v-bind:to="'/projects/' + project.slug ">
+            <img v-if="project.image"  v-bind:src="project.image" /> 
+          </router-link>
+          <router-link v-bind:to="'/projects/' + project.slug ">
+            <p>{{project.name}}</p>
+          </router-link>
+        </div>
+      </div>
+    </div>
+
+    <div v-for="project in projectsClone" :key="project.id">
+      <div class="section">
+        <div v-bind:class="project.position" class="project projectClone">
+          <router-link v-bind:to="'/projects/' + project.slug ">
+            <img v-if="project.image"  v-bind:src="project.image" /> 
+          </router-link>
+          <router-link v-bind:to="'/projects/' + project.slug ">
+            <p>{{project.name}}</p>
+          </router-link>
+        </div>
+      </div>
     </div>
 
   </div>
@@ -20,6 +38,9 @@
         projects: [],
       }
     },
+    computed: {
+      projectsClone(){ return this.projects.slice(0,3) }
+    },
     mounted() {
       api.getProjects()
         .then(data => {
@@ -30,3 +51,24 @@
     } 
   }
 </script>
+
+<style>
+
+  .project {
+    max-width: 500px;
+    background-color: white;
+  }
+
+  .project a {
+    padding: 0;
+  }
+
+  .right {
+    float: right;
+  }
+
+  .center {
+    margin: 0 auto;
+  }
+
+</style>

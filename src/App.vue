@@ -75,6 +75,10 @@
     padding: 16px;
   }
 
+  img {
+    width: 100%;
+  }
+
 
   #app {
     -webkit-font-smoothing: antialiased;
@@ -87,6 +91,16 @@
     z-index: 100;
   }
 
+  #menuLinks {
+    padding: 8px;
+  }
+
+  #menuOptions {
+    bottom: 0;
+    position: fixed;
+    padding: 8px;
+  }
+
   #menu a {
     display: block;
     padding: 8px;
@@ -95,6 +109,8 @@
   #menu a.router-link-exact-active {
     color: #42b983;
   }
+
+
 
 
   /* Page styles */
@@ -120,6 +136,14 @@
   .view-enter-to, .view-leave {
     opacity: 1;
     transform: translateY(0px);
+  }
+
+  .section {
+    width: 100%;
+    padding: 15px;
+    position: relative;
+    overflow: auto;
+    background-color: green;
   }
 
 
