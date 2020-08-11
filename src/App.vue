@@ -6,7 +6,7 @@
         <router-link to="/about">About</router-link>
       </div>
       <div id="menuOptions">
-        <button v-on:click="toggleAutoScroll">Scroll</button>
+        <!-- <button v-on:click="toggleAutoScroll">Scroll</button> -->
       </div>
     </div>
     <transition name="view">
@@ -18,33 +18,22 @@
 </template>
 
 <script>
-  let scrolling = 1;
-  // let projectsClone = document.getElementById("projectsClone");
 
-  // function autoScroll() {
-  //   if(scrolling == 1){
-  //     setInterval(function(){
-  //       window.scrollBy(0,1);
-  //     },20);
-  //   }
-  //   if (projectsClone.getBoundingClientRect().top <= 0) {
-  //     window.scrollTo(0, 0);
-  //   }
-  // }
 
   export default {
-    methods: {
-      toggleAutoScroll: function() {
-        console.log(scrolling);
-        if(scrolling == 1){
-          scrolling = 0;
-        } else {
-          scrolling = 1;
-        }
-      }
-    },
+    // methods: {
+    //   toggleAutoScroll: function() {
+    //     console.log(scrolling);
+    //     if(scrolling == 1){
+    //       scrolling = 0;
+    //     } else {
+    //       scrolling = 1;
+    //     }
+    //     console.log(scrolling)
+    //   }
+    // },
+    
     mounted() {
-      // autoScroll()
     }
   }
 </script>
@@ -117,7 +106,7 @@
   .page {
     width: calc(100% - 116px);
     float: right;
-    background-color: yellow;
+    /* background-color: yellow; */
   }
 
   .view-enter-active, .view-leave-active {
@@ -143,7 +132,7 @@
     padding: 15px;
     position: relative;
     overflow: auto;
-    background-color: green;
+    /* background-color: green; */
   }
 
 
