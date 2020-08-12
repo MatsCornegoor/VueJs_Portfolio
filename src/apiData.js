@@ -1,5 +1,5 @@
 import axios from "axios"
-export default new class {
+export default {
     
     getProjects(){
         return axios.get("http://admin.matscornegoor.nl/mats/items/projects?fields=id,name,description,image.data,slug,position")
@@ -26,7 +26,7 @@ export default new class {
                 return outputData;
 
             }) 
-    }
+    },
 
     getProject(slug){
         return axios.get("http://admin.matscornegoor.nl/mats/items/projects?fields=id,name,description,image.data,images.directus_files_id,slug")
@@ -68,14 +68,6 @@ export default new class {
             }) 
     }
 
-
-    // getMedia(id){
-    //     return axios.get("http://admin.matscornegoor.nl/mats/files/" + id)
-    //         .then(response => {
-    //             return response.data
-    //         }) 
-    // }
-
 }
 
 // http://admin.matscornegoor.nl/mats/items/projects/?fields=image.data
@@ -83,3 +75,12 @@ export default new class {
 
 // http://admin.matscornegoor.nl/mats/items/projects?fields=id,name,description,image.data,images.directus_files_id
 
+// export default new class {
+
+
+// getMedia(id){
+    //     return axios.get("http://admin.matscornegoor.nl/mats/files/" + id)
+    //         .then(response => {
+    //             return response.data
+    //         }) 
+    // }

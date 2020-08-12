@@ -27,7 +27,7 @@
         .then(data => {
           this.project = data;
         });
-        
+      // console.log("test");
     } 
   }
 </script>

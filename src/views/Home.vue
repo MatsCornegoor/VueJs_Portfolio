@@ -34,19 +34,30 @@
 <script>
   import api from "../apiData.js";
 
+  let scrolling = 1;
+  let scroll;
+
   function autoScroll() {
-    let scrolling = 1;
-    let projectClone = document.getElementById("projectClone");
-    if(scrolling == 1){
-      setInterval(function(){
-        // console.log("run");
-        window.scrollBy(0,1);
-        if (projectClone.getBoundingClientRect().top <= 0) {
-          window.scrollTo(0, 0);
-        }
-      },20);
-    }  
+    console.log("startScroll");
+    scroll = setInterval(scroller, 20);
   }
+
+  function scroller() {
+    if (scrolling == 1) {
+      window.scrollBy(0,1);
+    }
+    let projectClone = document.getElementById("projectClone");
+    if (projectClone.getBoundingClientRect().top <= 0) {
+      window.scrollTo(0, 0);
+    }
+  }
+
+  function stopAutoScroll() {
+    console.log("stopScroll");
+    clearInterval(scroll);
+  }
+
+ 
 
   export default {
 
@@ -58,21 +69,7 @@
     computed: {
       projectsClone(){ return this.projects.slice(0,3) }
     },
-    // methods : {
-    //   autoScroll : function(){  
-    //     let scrolling = 1;
-    //     let projectClone = document.getElementById("projectClone");
-    //     console.log(this.$route.fullpath);
-    //     if(scrolling == 1 && this.$route.name == 'Home'){
-    //       setInterval(function(){
-    //         window.scrollBy(0,1);
-    //         if (projectClone.getBoundingClientRect().top <= 0) {
-    //           window.scrollTo(0, 0);
-    //         }
-    //       },20);
-    //     } 
-    //   }
-    // },
+    
     mounted() {
       api.getProjects()
         .then(data => {
@@ -80,7 +77,9 @@
         });
 
       autoScroll()
-      // this.autoScroll()
+    },
+    destroyed(){
+      stopAutoScroll()
     }
   }
 </script>
