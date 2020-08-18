@@ -4,15 +4,13 @@
       <div id="menuLinks">
         <router-link to="/">Projects</router-link>
         <router-link to="/about">About</router-link>
+        <a href="mailto:m.cornegoor@gmail.com">Contact</a>
       </div>
       <div id="menuOptions">
         <!-- <button v-on:click="toggleAutoScroll">Scroll</button> -->
       </div>
     </div>
     <transition name="view">
-      <!-- <keep-alive> -->
-        <!-- <router-view :key="$route.fullPath"/> -->
-      <!-- </keep-alive> -->
       <router-view/>
     </transition>
   </div>
@@ -60,8 +58,8 @@
     font-family: sans-serif;
     font-weight: normal;
     color: black;
-    font-size: 32px;
-    line-height: 24px;
+    font-size: 40px;
+    line-height: 40px;
     padding: 16px;
   }
 
@@ -96,8 +94,12 @@
     padding: 8px;
   }
 
+  #menu a:hover {
+    color: blue;
+  }
+
   #menu a.router-link-exact-active {
-    color: #42b983;
+    color: blue;
   }
 
 
@@ -130,10 +132,15 @@
 
   .section {
     width: 100%;
-    padding: 15px;
+    padding: 16px;
+    padding-top: 48px;
     position: relative;
     overflow: auto;
     /* background-color: green; */
+  }
+
+  .textWrap {
+    max-width: 1200px;
   }
 
 

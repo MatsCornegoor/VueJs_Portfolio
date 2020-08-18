@@ -1,12 +1,12 @@
 <template>
   <div class="page">
     <h1 v-if="project.name !== null"> {{project.name}} </h1>
-    <img v-if="project.image"  v-bind:src="project.image" /> 
-    <p v-if="project.description" > {{project.description}} </p>
-
-    <div v-for="(image,index) in project.images" :key="index">
-      <img v-bind:src="image" />
-      <p>hoi</p>
+    <!-- <img v-if="project.image"  v-bind:src="project.image" />  -->
+    <p class="textWrap" v-if="project.description" > {{project.description}} </p>
+    <div class="section imageGrid">
+      <div v-for="(image,index) in project.images" :key="index">
+        <img v-bind:src="image" />
+      </div>
     </div>
 
   </div>
@@ -27,10 +27,17 @@
         .then(data => {
           this.project = data;
         });
-      // console.log("test");
     } 
   }
 </script>
+
+<style>
+  .imageGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+</style>
 
 
 
