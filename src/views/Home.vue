@@ -34,8 +34,6 @@
 </template>
 
 <script>
-  // import api from "../apiData.js";
-
   let scrolling = 2;
   let scroll;
 
@@ -59,37 +57,15 @@
     clearInterval(scroll);
   }
 
-  import {mapState} from "vuex";
-
   export default {
     
-
-    // data(){
-    //   return {
-    //     projects: [],
-    //   }
-    // },
     computed: {
-      ...mapState(['projects']),
-      projectsClone(){ return this.projects.slice(0,3) },
+      projects(){ return this.$store.state.projects},
+      projectsClone(){ return this.$store.state.projects.slice(0,3) },
     },
-
-    // computed: mapState(['projects']),
     
-    mounted() {
-      // api.getProjects()
-      //   .then(data => {
-      //     this.projects = data;
-      //   });
-
+    created() {
       this.$store.dispatch('GET_PROJECTS')
-      //   .then(test => {
-      //     console.log(test);
-      //   })
-      
-
-
-
       autoScroll()
     },
     destroyed(){

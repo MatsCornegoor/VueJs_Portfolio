@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import api from "../apiData.js"
+import apiData from "../apiData.js"
 
 Vue.use(Vuex);
 
@@ -18,12 +18,14 @@ export default new Vuex.Store({
     },
 
     actions: {
-        GET_PROJECTS(context){
-            return api.getProjects()
-                .then(projects => {
-                    context.commit('SET_PROJECTS', projects)
-                })
-                .catch(error => console.log(error))
+        async GET_PROJECTS(context){
+            if (context.state.projects.length < 1) {
+                return apiData.getProjects()
+                    .then(projects => {
+                        context.commit('SET_PROJECTS', projects)
+                    })
+                    .catch(error => console.log(error))
+            }
         }
     }
 
