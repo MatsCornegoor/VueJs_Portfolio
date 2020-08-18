@@ -1,7 +1,6 @@
 <template>
   <div class="page">
     <h1 v-if="project.name !== null"> {{project.name}} </h1>
-    <!-- <img v-if="project.image"  v-bind:src="project.image" />  -->
     <p class="textWrap" v-if="project.description" > {{project.description}} </p>
     <div class="section imageGrid">
       <div v-for="(image,index) in project.images" :key="index">
@@ -13,20 +12,16 @@
 </template>
 
 <script>
-  import api from "../apiData.js"
+
   export default {
     props: ['slug'],
 
-    data(){
-      return {
-        project: [],
-      }
+    computed: {
+      project(){ return this.$store.state.project},
     },
-    mounted() {
-      api.getProject(this.slug)
-        .then(data => {
-          this.project = data;
-        });
+
+    created() {
+      this.$store.dispatch('GET_PROJECT',this.slug)
     } 
   }
 </script>

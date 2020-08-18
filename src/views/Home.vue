@@ -121,14 +121,14 @@
     margin: 0 auto;
   }
 
-  .page::-webkit-scrollbar {
+  /* .page::-webkit-scrollbar {
     display: none;
   }
 
   .page {
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
-  }
+    -ms-overflow-style: none; 
+    scrollbar-width: none; 
+  } */
 
 
 </style>

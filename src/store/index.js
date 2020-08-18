@@ -8,12 +8,16 @@ export default new Vuex.Store({
     namespaced: true,
 
     state: {
-        projects: []
+        projects: [],
+        project: []
     },
 
     mutations: {
         SET_PROJECTS(state, payload) {
             state.projects = payload;
+        },
+        SET_PROJECT(state, payload) {
+            state.project = payload;
         }
     },
 
@@ -26,6 +30,15 @@ export default new Vuex.Store({
                     })
                     .catch(error => console.log(error))
             }
+        },
+        async GET_PROJECT(context,slug){
+            // if (context.state.project.length < 1) {
+                return apiData.getProject(slug)
+                    .then(project => {
+                        context.commit('SET_PROJECT', project)
+                    })
+                    .catch(error => console.log(error))
+            // }
         }
     }
 
