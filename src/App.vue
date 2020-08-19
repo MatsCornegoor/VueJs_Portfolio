@@ -11,7 +11,10 @@
       </div>
     </div>
     <transition name="view">
-      <router-view/>
+      <keep-alive exclude="home">
+        <router-view :key="$route.fullPath"/>
+      </keep-alive>>
+      <!-- <router-view/> -->
     </transition>
   </div>
 </template>

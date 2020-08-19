@@ -58,7 +58,7 @@
   }
 
   export default {
-    
+    name: 'home',
     computed: {
       projects(){ return this.$store.state.projects},
       projectsClone(){ return this.$store.state.projects.slice(0,3) },
@@ -74,7 +74,7 @@
   }
 </script>
 
-<style scoped>
+<style>
 
   .project {
     max-width: 550px;

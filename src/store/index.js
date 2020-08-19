@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import apiData from "../apiData.js"
+import apiData from "./apiData.js"
 
 Vue.use(Vuex);
 
